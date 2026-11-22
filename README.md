@@ -75,3 +75,5 @@ Load the `dist` folder as an unpacked extension. To run static analysis, use `pv
 The tester uses Russian for Russian time zones and English elsewhere. For UTC or a fixed offset, it falls back to the region in the browser’s primary locale.
 
 </details>
+
+Sponsored by [GTA Classics on laut.fm](https://laut.fm/gta-classics).
