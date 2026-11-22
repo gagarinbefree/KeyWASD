@@ -41,7 +41,7 @@ body {
 .brand img { width: 2.7rem; height: 2.7rem; border-radius: .55rem; }
 .brand > span > span { color: var(--pink); }
 .radio-strip { gap: .85rem; }
-#music-status { font-size: .9rem; color: #e2cadd; }
+.sound-button[aria-pressed="false"] .sound-bars { opacity: .45; }
 .sound-button { color: var(--cream); background: #302238; border: 1px solid #79516f; box-shadow: none; border-radius: 99px; padding-inline: 1rem; font-size: 1rem; height: max(44px, 2.7rem); }
 .sound-button:hover { background: #493149; }
 .sound-bars { display: inline-flex; height: 1.1rem; align-items: center; gap: .14rem; }
@@ -59,7 +59,7 @@ body {
 .connection::before { content: ""; border-radius: 50%; width: .6rem; height: .6rem; background: #ffc385; box-shadow: 0 0 0 3px #ffca8833; }
 .connection[data-active="true"]::before { background: var(--aqua); box-shadow: 0 0 0 3px #47ead94a; }
 h1 { font: 400 clamp(2.75rem, min(6.1vw, 10.5dvh), 6.5rem)/.93 "Russo One", Impact, sans-serif; letter-spacing: -.052em; text-transform: uppercase; margin: .65rem 0 .8rem; color: #fff5d9; -webkit-text-stroke: 4px #281529; paint-order: stroke fill; text-shadow: 3px 4px #281529, 4px 6px #bc4679; }
-h1 span { color: #ffb2c9; }
+h1 span:last-child { color: #ffb2c9; }
 .directions { color: #fff2eb; max-width: 37em; line-height: 1.38; font-size: 1.15rem; text-shadow: 0 1px 4px #32152d; }
 .capture-controls { flex-wrap: wrap; gap: .7rem 1rem; margin-top: .95rem; }
 .capture-controls > span, footer { font-size: .95rem; }
@@ -104,7 +104,6 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--aqua); outline-
 @media (max-width: 38rem) {
   .masthead { flex-wrap: wrap; gap: .5rem 1rem; padding-block: .4rem 0; }
   .brand { font-size: 1.8rem; }
-  .radio-strip { flex: 1 1 16rem; justify-content: space-between; }
   .poster { background-position: 68% center; }
   .poster::before { background: linear-gradient(0deg,#24192aed 0%,#27172ecb 50%,#24152a2e 100%); }
   .poster-content { padding: clamp(2.25rem, 7dvh, 5rem) 1rem 1.25rem; }

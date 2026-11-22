@@ -1,5 +1,6 @@
 import { controllerName, installController } from './controller.ts'
-import { installSpotify, type MusicState } from './spotify.ts'
+import { installSpotify } from './spotify.ts'
+import { localizePage, pageLanguage } from './i18n.ts'
 
 /** Returns a required element of the packaged test page. */
 function element(id: string) {
@@ -8,24 +9,15 @@ function element(id: string) {
   return node
 }
 
+const language = pageLanguage(Intl.DateTimeFormat().resolvedOptions().timeZone, navigator.language)
+const strings = localizePage(document, language)
 const captureButton = element('capture') as HTMLButtonElement
 const errorMessage = element('error')
 const soundButton = element('sound') as HTMLButtonElement
-const soundLabel = element('sound-label')
-const musicStatus = element('music-status')
-const messages: Record<MusicState, string> = {
-  loading: 'Подключение к GTA FM…',
-  starting: 'Запуск GTA FM…',
-  playing: 'GTA FM',
-  off: 'Звук выключен',
-  blocked: 'Нажмите для звука',
-  error: 'GTA FM недоступно'
-}
 const player = installSpotify(window, element('spotify-player') as HTMLIFrameElement, state => {
   const enabled = state === 'playing' || state === 'starting' || state === 'loading'
   soundButton.dataset.state = state
-  soundLabel.textContent = enabled ? 'Выключить звук' : 'Включить звук'
-  musicStatus.textContent = messages[state]
+  soundButton.setAttribute('aria-pressed', String(enabled))
 })
 soundButton.addEventListener('click', () => player.toggle())
 function unlockMusic(event: Event) {
@@ -40,19 +32,19 @@ captureButton.addEventListener('click', async () => {
   try {
     await capture(document.documentElement)
   } catch {
-    errorMessage.textContent = 'Захват мыши недоступен. Выберите эту вкладку и повторите попытку.'
+    errorMessage.textContent = strings.captureError.message
   }
 })
 
 const bindings = [
-  [7, 'RT · ЛКМ'], [6, 'LT · ПКМ'], [0, 'A · Пробел'], [1, 'B · C'], [2, 'X · R'],
-  [3, 'Y · E'], [4, 'LB · Q'], [5, 'RB · F'], [10, 'LS · Лев. Shift'], [11, 'RS · Лев. Ctrl']
+  [7, 'RT', strings.mouseLeft.message], [6, 'LT', strings.mouseRight.message], [0, 'A', strings.space.message],
+  [1, 'B', 'C'], [2, 'X', 'R'], [3, 'Y', 'E'], [4, 'LB', 'Q'], [5, 'RB', 'F'],
+  [10, 'LS', strings.shift.message], [11, 'RS', strings.ctrl.message]
 ] as const
 const container = element('buttons')
-const labels = bindings.map(([index, text]) => {
+const labels = bindings.map(([index, control, key]) => {
   const label = document.createElement('span')
   label.className = 'binding'
-  const [control, key] = text.split(' · ')
   const symbol = document.createElement('b')
   symbol.textContent = control
   const shortcut = document.createElement('kbd')
@@ -71,9 +63,9 @@ function render() {
   const active = Boolean(pad)
   if (status.dataset.active !== String(active)) {
     status.dataset.active = String(active)
-    status.textContent = active ? 'Захват включён' : 'Ожидание ввода'
+    status.textContent = active ? strings.active.message : strings.waiting.message
     captureButton.disabled = active
-    captureButton.textContent = active ? 'Мышь захвачена' : 'Включить захват'
+    captureButton.textContent = active ? strings.captured.message : strings.capture.message
   }
   for (const [index, { dot, value }] of dials.entries()) {
     const x = pad?.axes[index * 2] ?? 0

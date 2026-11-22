@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ru" data-theme="sunset">
+<html lang="en" data-theme="sunset">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#171126">
-    <title>KeyWest · Проверка геймпада</title>
+    <title data-i18n="pageTitle">KeyWest · Gamepad tester</title>
     <link rel="icon" type="image/png" href="/icons/keywest-32.png">
     <link rel="stylesheet" href="/src/styles.css">
   </head>
@@ -13,21 +13,20 @@
       <header class="masthead">
         <div class="brand" aria-label="KeyWest"><img src="/icons/keywest-48.png" width="40" height="40" alt=""><span>Key<span>West</span></span></div>
         <div class="radio-strip">
-          <small id="music-status" role="status">Подключение к GTA FM…</small>
-          <button type="button" id="sound" class="btn btn-sm sound-button">
+          <button type="button" id="sound" data-i18n-label="radioSound" aria-label="GTA FM sound" aria-pressed="true" class="btn btn-sm sound-button">
             <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <span id="sound-label">Выключить звук</span>
+            <span>GTA FM</span>
           </button>
         </div>
       </header>
       <section class="poster" aria-labelledby="title">
         <div class="poster-content">
-          <p class="connection" id="connection" role="status">Ожидание ввода</p>
-          <h1 id="title">Проверка<br><span>геймпада</span></h1>
-          <p class="directions">Зажмите W + D, двигайте мышью и нажмите ЛКМ.<br class="wide-only"> Следите за обоими стиками и правым курком.</p>
+          <p class="connection" id="connection" role="status" data-i18n="waiting">Waiting for input</p>
+          <h1 id="title"><span data-i18n="headingFirst">Gamepad</span><br><span data-i18n="headingSecond">tester</span></h1>
+          <p class="directions"><span data-i18n="instructions">Hold W + D, move the mouse and click the left mouse button.</span><br class="wide-only"> <span data-i18n="watchSticks">Watch both sticks and the right trigger.</span></p>
           <div class="capture-controls">
-            <button type="button" id="capture" class="btn capture">Включить захват</button>
-            <span><kbd class="kbd kbd-sm">Esc</kbd> отпустить мышь</span>
+            <button type="button" id="capture" class="btn capture" data-i18n="capture">Capture mouse</button>
+            <span><kbd class="kbd kbd-sm">Esc</kbd> <span data-i18n="releaseMouse">release mouse</span></span>
           </div>
           <p id="error" role="alert"></p>
         </div>
@@ -35,25 +34,25 @@
       <div class="console-grid">
         <section class="card instrument move">
           <div class="card-body">
-            <h2>Движение</h2><p>Левый стик · WASD</p>
+            <h2 data-i18n="movement">Movement</h2><p data-i18n="moveHint">Left stick · WASD</p>
             <div class="dial" aria-hidden="true"><i id="left-dot"></i></div>
-            <output id="left-value" aria-label="Координаты левого стика">X 0.00　 Y 0.00</output>
+            <output id="left-value" data-i18n-label="leftCoords" aria-label="Left stick coordinates">X 0.00　 Y 0.00</output>
           </div>
         </section>
         <section class="card instrument look">
           <div class="card-body">
-            <h2>Обзор</h2><p>Правый стик · мышь</p>
+            <h2 data-i18n="look">Look</h2><p data-i18n="lookHint">Right stick · mouse</p>
             <div class="dial" aria-hidden="true"><i id="right-dot"></i></div>
-            <output id="right-value" aria-label="Координаты правого стика">X 0.00　 Y 0.00</output>
+            <output id="right-value" data-i18n-label="rightCoords" aria-label="Right stick coordinates">X 0.00　 Y 0.00</output>
           </div>
         </section>
         <section class="card bindings-card">
-          <div class="card-body"><h2>Кнопки и курки</h2><div id="buttons" class="binding-grid"></div></div>
+          <div class="card-body"><h2 data-i18n="bindings">Buttons and triggers</h2><div id="buttons" class="binding-grid"></div></div>
         </section>
       </div>
       <footer>
-        <span><kbd class="kbd kbd-sm">F8</kbd> переключить режим · При уходе с вкладки ввод сбрасывается.</span>
-        <a href="https://open.spotify.com/playlist/37i9dQZF1DX6RSJAsEDz7H" rel="noopener noreferrer" target="_blank">Плейлист GTA FM ↗</a>
+        <span><kbd class="kbd kbd-sm">F8</kbd> <span data-i18n="footerHint">toggle capture · Input resets when you leave this tab.</span></span>
+        <a href="https://open.spotify.com/playlist/37i9dQZF1DX6RSJAsEDz7H" rel="noopener noreferrer" target="_blank" data-i18n-label="playlist" aria-label="Open the GTA FM playlist">GTA FM ↗</a>
       </footer>
     </main>
     <iframe id="spotify-player" title="GTA FM" allow="autoplay; encrypted-media" hidden></iframe>
