@@ -2,7 +2,7 @@
 
 Got GTA VI on Xbox and a left hand that goes straight to WASD? **KeyWest** turns your keyboard and mouse into a virtual Xbox controller in Chrome or Edge. Hold **W + D** and sweep the mouse toward the ocean. The browser reads both sticks at once, so you can keep moving while you look around.
 
-**[Download KeyWest for Chrome or Edge](https://github.com/gagarinbefree/KeyWest/releases/latest)** · **[Open Xbox Remote Play](https://play.xbox.com/remoteplay)**
+**[Try the gamepad tester](https://gagarinbefree.github.io/KeyWest/)** · **[Download KeyWest for Chrome or Edge](https://github.com/gagarinbefree/KeyWest/releases/latest)** · **[Open Xbox Remote Play](https://play.xbox.com/remoteplay)**
 
 ![A gaming keyboard with red WASD keys sits beside an Xbox controller overlooking the Overseas Highway at sunset.](docs/images/xbox-controller-wasd-keyboard.jpg)
 
@@ -17,7 +17,9 @@ Got GTA VI on Xbox and a left hand that goes straight to WASD? **KeyWest** turns
 
 ## Try both sticks before you start your Xbox
 
-Click the **KeyWest** extension icon, then **Capture mouse**. Hold **W + D**, move the mouse, and press the **left mouse button**. The **Movement** dot moves diagonally, the **Look** dot follows your mouse, and **RT** lights up. Stop moving the mouse while holding the keys. The right stick returns to center while the left stick holds its diagonal. Press **Esc** to release the cursor.
+Open the [online tester](https://gagarinbefree.github.io/KeyWest/) in Chrome or Edge, or click the **KeyWest** icon if you’ve installed the extension. The button next to **GTA FM** switches between English and Russian and remembers your choice.
+
+Click **Capture mouse**. Hold **W + D**, move the mouse, and press the **left mouse button**. The **Movement** dot moves diagonally, the **Look** dot follows your mouse, and **RT** lights up. Stop moving the mouse while holding the keys. The right stick returns to center while the left stick holds its diagonal. Press **Esc** to release the cursor.
 
 ![KeyWest gamepad tester waiting for input, with Movement on the left, Look in the middle, and Xbox buttons and triggers on the right.](docs/images/gamepad-tester.jpg)
 

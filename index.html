@@ -12,11 +12,14 @@
     <main class="shell">
       <header class="masthead">
         <div class="brand" aria-label="KeyWest"><img src="/icons/keywest-48.png" width="40" height="40" alt=""><span>Key<span>West</span></span></div>
-        <div class="join radio-strip">
-          <button type="button" id="sound" data-i18n-label="radioSound" aria-label="GTA FM sound" aria-pressed="true" class="btn btn-sm join-item sound-button">
-            <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          </button>
-          <a class="btn btn-sm join-item station-link" href="https://laut.fm/gta-classics" target="_blank" rel="noopener noreferrer" data-i18n-label="radioStation" aria-label="Open GTA Classics on laut.fm">GTA FM</a>
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" id="language" lang="ru" class="btn btn-sm btn-ghost min-h-11">Русский</button>
+          <div class="join radio-strip">
+            <button type="button" id="sound" data-i18n-label="radioSound" aria-label="GTA FM sound" aria-pressed="true" class="btn btn-sm join-item sound-button">
+              <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </button>
+            <a class="btn btn-sm join-item station-link" href="https://laut.fm/gta-classics" target="_blank" rel="noopener noreferrer" data-i18n-label="radioStation" aria-label="Open GTA Classics on laut.fm">GTA FM</a>
+          </div>
         </div>
       </header>
       <section class="poster" aria-labelledby="title">

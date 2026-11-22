@@ -1,7 +1,26 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
-import { pageLanguage } from '../src/i18n.ts'
+import { pageLanguage, preferredLanguage, saveLanguage } from '../src/i18n.ts'
+
+test('manual language choices survive reopening the tester in either region', () => {
+  let stored = 'unsupported'
+  const browser = { localStorage: {
+    getItem: () => stored,
+    setItem: (_, value) => { stored = value }
+  } }
+  assert.equal(preferredLanguage(browser, 'ru'), 'ru')
+  saveLanguage(browser, 'en')
+  assert.equal(preferredLanguage(browser, 'ru'), 'en')
+  saveLanguage(browser, 'ru')
+  assert.equal(preferredLanguage(browser, 'en'), 'ru')
+})
+
+test('the tester can still be used when browser storage is blocked', () => {
+  const browser = { get localStorage() { throw new Error('Storage blocked') } }
+  assert.equal(preferredLanguage(browser, 'ru'), 'ru')
+  assert.doesNotThrow(() => saveLanguage(browser, 'en'))
+})
 
 test('the local time zone selects Russian in Russia and English abroad', () => {
   for (const zone of ['Europe/Moscow', 'Asia/Yekaterinburg', 'Asia/Kamchatka']) {
