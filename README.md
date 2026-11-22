@@ -4,7 +4,7 @@ Got GTA VI on Xbox and a left hand that goes straight to WASD? **KeyWest** turns
 
 **[Download KeyWest for Chrome or Edge](https://github.com/gagarinbefree/KeyWest/releases/latest)** · **[Open Xbox Remote Play](https://play.xbox.com/remoteplay)**
 
-![A gaming keyboard with red WASD keys sits beside an Xbox controller overlooking the Overseas Highway at sunset.](docs/images/xbox-keys-sunset.jpg)
+![A gaming keyboard with red WASD keys sits beside an Xbox controller overlooking the Overseas Highway at sunset.](docs/images/xbox-controller-wasd-keyboard.jpg)
 
 **What you can try today.** The built-in tester lets you try both sticks, the buttons, and the triggers with just your PC, keyboard, and mouse. Compatibility with a live GTA VI Remote Play session on Xbox Series X or Series S is still unverified. The steps below walk you through trying it on your console.
 
