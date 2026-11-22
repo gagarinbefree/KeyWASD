@@ -1,10 +1,10 @@
-# <img src="./docs/images/keywest-wasd.png" width="40" height="40" align="absmiddle" alt=""> KeyWest · Keyboard and mouse for Xbox Remote Play
+# <img src="./public/icons/keywest-48.png" width="40" height="40" align="absmiddle" alt=""> KeyWest · Keyboard and mouse for Xbox Remote Play
 
 Got GTA VI on Xbox and a left hand that goes straight to WASD? **KeyWest** turns your keyboard and mouse into a virtual Xbox controller in Chrome or Edge. Hold **W + D** and sweep the mouse toward the ocean. The browser reads both sticks at once, so you can keep moving while you look around.
 
 **[Download KeyWest for Chrome or Edge](https://github.com/gagarinbefree/KeyWest/releases/latest)** · **[Open Xbox Remote Play](https://play.xbox.com/remoteplay)**
 
-![An Xbox controller rests on a sunlit railing overlooking the Overseas Highway and turquoise waters of the Florida Keys at sunset.](docs/images/xbox-keys-sunset.jpg)
+![A gaming keyboard with red WASD keys sits beside an Xbox controller overlooking the Overseas Highway at sunset.](docs/images/xbox-keys-sunset.jpg)
 
 **What you can try today.** The built-in tester lets you try both sticks, the buttons, and the triggers with just your PC, keyboard, and mouse. Compatibility with a live GTA VI Remote Play session on Xbox Series X or Series S is still unverified. The steps below walk you through trying it on your console.
 
