@@ -40,6 +40,15 @@ body {
 .brand { gap: .55rem; font: italic 400 2.15rem/1 "Russo One", sans-serif; letter-spacing: -.07em; }
 .brand img { width: 2.7rem; height: 2.7rem; border-radius: .55rem; }
 .brand > span > span { color: var(--pink); }
+#language::before {
+  content: "";
+  width: 1.55rem;
+  height: 1rem;
+  flex: none;
+  background: center / contain no-repeat;
+}
+#language[lang="en"]::before { background-image: url("/icons/flag-us.svg"); }
+#language[lang="ru"]::before { background-image: url("/icons/flag-ru.svg"); }
 .radio-strip { border-radius: 99px; }
 .sound-button[aria-pressed="false"] .sound-bars { opacity: .45; }
 .radio-strip .btn { color: var(--cream); background: #302238; border: 1px solid #79516f; box-shadow: none; font-size: 1rem; height: max(44px, 2.7rem); }
