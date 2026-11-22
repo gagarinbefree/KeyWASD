@@ -56,10 +56,13 @@ body {
 .sound-button { min-width: 44px; }
 .station-link { padding-inline: .7rem 1rem; }
 .sound-bars { display: inline-flex; height: 1.1rem; align-items: center; gap: .14rem; }
-.sound-bars i { width: .2rem; height: .35rem; border-radius: 2px; background: var(--pink); }
+.sound-bars i { width: .2rem; height: .55rem; border-radius: 2px; background: var(--pink); transform-origin: bottom; }
 .sound-bars i:nth-child(2) { height: .9rem; }
 .sound-bars i:nth-child(3) { height: .65rem; }
-.sound-button[data-state="playing"] .sound-bars i { animation: level .8s ease-in-out infinite alternate; }
+.sound-button[aria-pressed="true"] .sound-bars i { animation: level .6s ease-in-out infinite alternate; }
+@media (pointer: coarse), (max-width: 38rem) {
+  .sound-button[data-state="blocked"] .sound-bars i { animation: level 1.3s ease-in-out infinite alternate; }
+}
 .sound-bars i:nth-child(2n) { animation-delay: -.4s !important; }
 @keyframes level { to { transform: scaleY(.4); } }
 
@@ -114,8 +117,13 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--aqua); outline-
   .binding-grid { grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
 }
 @media (max-width: 38rem) {
-  .masthead { flex-wrap: wrap; gap: .5rem 1rem; padding-block: .4rem 0; }
-  .brand { font-size: 1.8rem; }
+  .masthead { gap: .25rem; padding-block: .4rem 0; }
+  .brand { gap: .25rem; font-size: clamp(1rem, 4.6vw, 1.8rem); }
+  .brand img { width: clamp(1.5rem, 6.5vw, 2.7rem); height: auto; }
+  #language { padding-inline: .3rem; gap: .3rem; }
+  #language::before { width: 1.15rem; }
+  .radio-strip .btn { font-size: .9rem; }
+  .station-link { padding-inline: .45rem; white-space: nowrap; }
   .poster { background-position: 68% center; }
   .poster::before { background: linear-gradient(0deg,#24192aed 0%,#27172ecb 50%,#24152a2e 100%); }
   .poster-content { padding: clamp(2.25rem, 7dvh, 5rem) 1rem 1.25rem; }
