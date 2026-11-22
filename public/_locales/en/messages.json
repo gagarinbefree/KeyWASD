@@ -25,6 +25,7 @@
   "shift": { "message": "Left Shift" },
   "ctrl": { "message": "Left Ctrl" },
   "footerHint": { "message": "toggle capture · Input resets when you leave this tab." },
+  "githubRepository": { "message": "Open KeyWest on GitHub" },
   "radioStation": { "message": "Open GTA Classics on laut.fm" },
   "radioSound": { "message": "GTA FM sound" }
 }
