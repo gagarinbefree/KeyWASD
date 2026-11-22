@@ -1,0 +1,81 @@
+name: Test, build and release KeyWest
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Test and package extension
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.manifest.outputs.version }}
+      artifact: ${{ steps.package.outputs.artifact-id }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm run typecheck
+      - run: pnpm run lint
+      - run: pnpm build
+
+      - name: Set extension version and verify packaged files
+        id: manifest
+        working-directory: dist
+        run: |
+          version="$(jq -er --arg run "$GITHUB_RUN_NUMBER" '.version | capture("^(?<series>[0-9]+\\.[0-9]+)\\.[0-9]+$").series + "." + $run' manifest.json)"
+          test "$GITHUB_RUN_NUMBER" -le 65535
+          jq --arg version "$version" '.version = $version' manifest.json > manifest.tmp
+          mv manifest.tmp manifest.json
+          jq -e '.manifest_version == 3' manifest.json
+          jq -r '.options_page, .background.service_worker, .content_scripts[].js[], .icons[], .action.default_icon[]' manifest.json |
+            while IFS= read -r file; do test -s "$file" || { echo "Missing file: $file"; exit 1; }; done
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Archive unpacked extension
+        id: package
+        uses: actions/upload-artifact@v7
+        with:
+          name: KeyWest-${{ steps.manifest.outputs.version }}
+          path: dist/
+          if-no-files-found: error
+          overwrite: true
+
+  release:
+    name: Publish versioned ZIP
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      VERSION: ${{ needs.build.outputs.version }}
+      ARTIFACT_ID: ${{ needs.build.outputs.artifact }}
+    steps:
+      - name: Verify ZIP and publish release
+        run: |
+          archive="KeyWest-$VERSION.zip"
+          tag="v$VERSION"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" > "$archive"
+          unzip -tq "$archive"
+          unzip -p "$archive" manifest.json | jq -e --arg version "$VERSION" '.version == $version'
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json assets,isDraft |
+            jq -e --arg archive "$archive" '(.isDraft == false) and any(.assets[]; .name == $archive)'; then
+            exit 0
+          fi
+          gh release create "$tag" "$archive" --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" --title "KeyWest $VERSION" --generate-notes
