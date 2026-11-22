@@ -73,7 +73,7 @@ h1 { font: 400 clamp(2.75rem, min(6.1vw, 10.5dvh), 6.5rem)/.93 "Russo One", Impa
 h1 span:last-child { color: #ffb2c9; }
 .directions { color: #fff2eb; max-width: 37em; line-height: 1.38; font-size: 1.15rem; text-shadow: 0 1px 4px #32152d; }
 .capture-controls { flex-wrap: wrap; gap: .7rem 1rem; margin-top: .95rem; }
-.capture-controls > span, footer { font-size: .95rem; }
+.capture-controls > span { font-size: .95rem; }
 .btn.capture { color: #23122d; border: 1px solid #ffb6c8; border-radius: 9px; background: #ff97b8; box-shadow: 0 3px 0 #993b6b; padding-inline: 1.25rem; font-size: 1.1rem; height: max(48px, 2.85rem); }
 .btn.capture:hover { background: #ffb3c8; }
 .btn.capture:disabled { background: #7ed5c4; color: #102f31; border-color: #a1eddd; box-shadow: none; }
@@ -97,7 +97,8 @@ h1 span:last-child { color: #ffb2c9; }
 .binding .kbd { font-size: .95rem; white-space: nowrap; }
 .binding[data-active="true"] { color: #1f1424; background: #ffd198; border-radius: 5px; }
 .binding[data-active="true"] b { color: inherit; }
-footer { justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .5rem 1rem; color: #d6c1d7; }
+footer { justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .5rem 1rem; color: #d6c1d7; font-size: .85rem; font-weight: 600; }
+footer .kbd { font-size: inherit; }
 footer a { color: #ffb2cf; text-underline-offset: 3px; }
 footer a:hover { text-decoration: underline; }
 button:focus-visible, a:focus-visible { outline: 3px solid var(--aqua); outline-offset: 3px; }
