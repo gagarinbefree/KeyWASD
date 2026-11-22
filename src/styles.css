@@ -1,0 +1,126 @@
+@import "tailwindcss" source(none);
+@source "../index.html";
+@source "./tester.ts";
+@plugin "daisyui" { themes: sunset --default; }
+
+@font-face {
+  font-family: "Russo One";
+  src: url("/fonts/RussoOne-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  color-scheme: dark;
+  font-size: clamp(1rem, min(1.55vw, 2.15dvh), 2.5rem);
+  --gutter: clamp(10px, 1.55vw, 2.5rem);
+  --gap: clamp(10px, 1.35vmin, 1rem);
+  --cream: #fff1d7;
+  --pink: #ff8ac3;
+  --aqua: #66efdc;
+  --ink: #151124;
+}
+body {
+  min-height: 100vh;
+  color: var(--cream);
+  background: radial-gradient(ellipse at 18% 15%, #36233c, transparent 59%), #151222;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+.shell {
+  display: grid;
+  grid-template-rows: auto minmax(auto, 1.22fr) minmax(auto, 1fr) auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0 var(--gutter) var(--gap);
+  gap: var(--gap);
+  width: 100%;
+}
+.masthead, .brand, .radio-strip, .capture-controls, footer { display: flex; align-items: center; }
+.masthead { justify-content: space-between; gap: 1rem; min-height: 3.6rem; padding-top: var(--gap); }
+.brand { gap: .55rem; font: italic 400 2.15rem/1 "Russo One", sans-serif; letter-spacing: -.07em; }
+.brand img { width: 2.7rem; height: 2.7rem; border-radius: .55rem; }
+.brand > span > span { color: var(--pink); }
+.radio-strip { gap: .85rem; }
+#music-status { font-size: .9rem; color: #e2cadd; }
+.sound-button { color: var(--cream); background: #302238; border: 1px solid #79516f; box-shadow: none; border-radius: 99px; padding-inline: 1rem; font-size: 1rem; height: max(44px, 2.7rem); }
+.sound-button:hover { background: #493149; }
+.sound-bars { display: inline-flex; height: 1.1rem; align-items: center; gap: .14rem; }
+.sound-bars i { width: .2rem; height: .35rem; border-radius: 2px; background: var(--pink); }
+.sound-bars i:nth-child(2) { height: .9rem; }
+.sound-bars i:nth-child(3) { height: .65rem; }
+.sound-button[data-state="playing"] .sound-bars i { animation: level .8s ease-in-out infinite alternate; }
+.sound-bars i:nth-child(2n) { animation-delay: -.4s !important; }
+@keyframes level { to { transform: scaleY(.4); } }
+
+.poster { display: grid; align-content: center; isolation: isolate; position: relative; overflow: hidden; border-radius: 18px; border: 1px solid #86536a; background: #332243 url("/art/overseas-highway.jpg") center/cover; }
+.poster::before { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg,#201224ef 0%,#25162cdb 25%,#23142165 49%,transparent 73%); }
+.poster-content { padding: 1.3rem clamp(1.25rem, 3.3vw, 4rem); }
+.connection { display: inline-flex; align-items: center; gap: .6rem; font-size: 1rem; font-weight: 650; color: #fff6ed; }
+.connection::before { content: ""; border-radius: 50%; width: .6rem; height: .6rem; background: #ffc385; box-shadow: 0 0 0 3px #ffca8833; }
+.connection[data-active="true"]::before { background: var(--aqua); box-shadow: 0 0 0 3px #47ead94a; }
+h1 { font: 400 clamp(2.75rem, min(6.1vw, 10.5dvh), 6.5rem)/.93 "Russo One", Impact, sans-serif; letter-spacing: -.052em; text-transform: uppercase; margin: .65rem 0 .8rem; color: #fff5d9; -webkit-text-stroke: 4px #281529; paint-order: stroke fill; text-shadow: 3px 4px #281529, 4px 6px #bc4679; }
+h1 span { color: #ffb2c9; }
+.directions { color: #fff2eb; max-width: 37em; line-height: 1.38; font-size: 1.15rem; text-shadow: 0 1px 4px #32152d; }
+.capture-controls { flex-wrap: wrap; gap: .7rem 1rem; margin-top: .95rem; }
+.capture-controls > span, footer { font-size: .95rem; }
+.btn.capture { color: #23122d; border: 1px solid #ffb6c8; border-radius: 9px; background: #ff97b8; box-shadow: 0 3px 0 #993b6b; padding-inline: 1.25rem; font-size: 1.1rem; height: max(48px, 2.85rem); }
+.btn.capture:hover { background: #ffb3c8; }
+.btn.capture:disabled { background: #7ed5c4; color: #102f31; border-color: #a1eddd; box-shadow: none; }
+.kbd { font-size: .95rem; min-height: 1.55em; height: auto; color: #f9e8f4; background: #32263b; border-color: #70576d; box-shadow: none; font-family: inherit; }
+#error:not(:empty) { margin-top: .75rem; color: #ffe0ac; }
+.console-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 1.34fr); gap: var(--gap); }
+.card { border: 1px solid #534156; border-radius: 15px; background: #221c2e; }
+.card-body { display: grid; gap: 0; padding: clamp(.9rem, 1.5vmin, 1.6rem) 1.3rem; }
+.instrument .card-body { grid-template-rows: auto auto 1fr auto; }
+.bindings-card .card-body { grid-template-rows: auto 1fr; }
+.card h2 { font: 400 1.65rem/1.2 "Russo One", sans-serif; letter-spacing: -.03em; }
+.instrument { --signal: var(--aqua); background: radial-gradient(ellipse at 100% 100%, #16383c 0%, transparent 70%),#201e2d; }
+.instrument.look { --signal: var(--pink); background: radial-gradient(ellipse at 100% 100%,#50283f 0%,transparent 70%),#251e30; }
+.instrument p { margin-top: 3px; font-size: 1.05rem; color: #ddccdf; }
+.dial { position: relative; align-self: center; width: min(100%, clamp(8.5rem, 20dvh, 18rem)); aspect-ratio: 1; margin: .45rem auto; border: 1px solid color-mix(in srgb,var(--signal) 55%,transparent); border-radius: 50%; background: linear-gradient(90deg,transparent 49.4%,#75687c88 50%,transparent 50.6%),linear-gradient(transparent 49.4%,#75687c88 50%,transparent 50.6%),repeating-radial-gradient(circle,transparent 0 23%,#b997bb35 23% 24%),#171724; }
+.dial i { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 9%; aspect-ratio: 1; border-radius: 100%; background: var(--signal); box-shadow: 0 0 0 4px color-mix(in srgb,var(--signal) 20%,transparent), 0 0 14px color-mix(in srgb,var(--signal) 45%,transparent); }
+.instrument output { display: block; text-align: center; color: var(--signal); font: 1rem ui-monospace, monospace; }
+.binding-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .2rem .8rem; margin-top: .6rem; }
+.binding { display: flex; align-items: center; justify-content: space-between; gap: .3rem; font-size: 1.12rem; border-bottom: 1px solid #49354e; padding: 3px 4px; }
+.binding b { color: #ffd198; }
+.binding .kbd { font-size: .95rem; white-space: nowrap; }
+.binding[data-active="true"] { color: #1f1424; background: #ffd198; border-radius: 5px; }
+.binding[data-active="true"] b { color: inherit; }
+footer { justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .5rem 1rem; color: #d6c1d7; }
+footer a { color: #ffb2cf; text-underline-offset: 3px; }
+footer a:hover { text-decoration: underline; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--aqua); outline-offset: 3px; }
+@media (min-width: 62rem) and (min-height: 40rem) {
+  .shell { height: 100dvh; }
+}
+@media (max-width: 61.99rem) {
+  .shell { grid-template-rows: auto auto 1fr auto; }
+  .poster { background-position: 62% center; }
+  .console-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bindings-card { grid-column: 1/-1; }
+  .dial { width: min(85%, clamp(7rem, 19dvh, 15rem)); }
+  .binding-grid { grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
+}
+@media (max-width: 38rem) {
+  .masthead { flex-wrap: wrap; gap: .5rem 1rem; padding-block: .4rem 0; }
+  .brand { font-size: 1.8rem; }
+  .radio-strip { flex: 1 1 16rem; justify-content: space-between; }
+  .poster { background-position: 68% center; }
+  .poster::before { background: linear-gradient(0deg,#24192aed 0%,#27172ecb 50%,#24152a2e 100%); }
+  .poster-content { padding: clamp(2.25rem, 7dvh, 5rem) 1rem 1.25rem; }
+  .wide-only { display: none; }
+  h1 { font-size: clamp(2.75rem, 11vw, 4rem); }
+  .instrument .card-body { padding: .85rem .65rem; }
+  .card h2 { font-size: 1.25rem; }
+  .dial { width: min(90%, 9rem); margin-block: .85rem; }
+  .instrument output { font-size: .9rem; }
+  .binding-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 23rem) {
+  .console-grid { grid-template-columns: minmax(0, 1fr); }
+  .instrument .card-body { grid-template-columns: 1fr auto; grid-template-rows: auto auto auto; align-content: center; padding: 1rem; }
+  .dial { grid-column: 2; grid-row: 1 / 4; width: 6.25rem; margin: 0 0 0 .3rem; }
+  .instrument output { text-align: left; align-self: end; }
+  .binding-grid { column-gap: .45rem; }
+}
+@media(prefers-reduced-motion: reduce) { .sound-button .sound-bars i { animation: none !important; } }
