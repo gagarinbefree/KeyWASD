@@ -1,39 +1,24 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
-import { pageLanguage, preferredLanguage, saveLanguage } from '../src/i18n.ts'
+import { installLanguageSwitch } from '../src/i18n.ts'
 
-test('manual language choices survive reopening the tester in either region', () => {
-  let stored = 'unsupported'
-  const browser = { localStorage: {
-    getItem: () => stored,
-    setItem: (_, value) => { stored = value }
-  } }
-  assert.equal(preferredLanguage(browser, 'ru'), 'ru')
-  saveLanguage(browser, 'en')
-  assert.equal(preferredLanguage(browser, 'ru'), 'en')
-  saveLanguage(browser, 'ru')
-  assert.equal(preferredLanguage(browser, 'en'), 'ru')
-})
-
-test('the tester can still be used when browser storage is blocked', () => {
-  const browser = { get localStorage() { throw new Error('Storage blocked') } }
-  assert.equal(preferredLanguage(browser, 'ru'), 'ru')
-  assert.doesNotThrow(() => saveLanguage(browser, 'en'))
-})
-
-test('the local time zone selects Russian in Russia and English abroad', () => {
-  for (const zone of ['Europe/Moscow', 'Asia/Yekaterinburg', 'Asia/Kamchatka']) {
-    assert.equal(pageLanguage(zone, 'en-US'), 'ru')
+test('each tester page starts in English and switches languages only on click', () => {
+  const open = () => {
+    const button = new EventTarget()
+    const languages = []
+    installLanguageSwitch(button, language => languages.push(language))
+    return { button, languages }
   }
-  assert.equal(pageLanguage('Asia/Almaty', 'ru-RU'), 'en')
-  assert.equal(pageLanguage('America/New_York', 'ru'), 'en')
-})
-
-test('a neutral clock falls back to the browser region, then English', () => {
-  assert.equal(pageLanguage('UTC', 'en-RU'), 'ru')
-  assert.equal(pageLanguage('Etc/GMT+3', 'ru-KZ'), 'en')
-  assert.equal(pageLanguage(undefined, 'ru'), 'en')
+  const first = open()
+  assert.deepEqual(first.languages, ['en'])
+  assert.equal(first.button.textContent, 'Русский')
+  first.button.dispatchEvent(new Event('click'))
+  assert.deepEqual(first.languages, ['en', 'ru'])
+  assert.equal(first.button.textContent, 'English')
+  assert.deepEqual(open().languages, ['en'])
+  first.button.dispatchEvent(new Event('click'))
+  assert.deepEqual(first.languages, ['en', 'ru', 'en'])
 })
 
 test('both locale catalogs cover the page and localized manifest fields', () => {

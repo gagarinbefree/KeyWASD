@@ -17,7 +17,7 @@ Got GTA VI on Xbox and a left hand that goes straight to WASD? **KeyWest** turns
 
 ## Try both sticks before you start your Xbox
 
-Open the [online tester](https://gagarinbefree.github.io/KeyWest/) in Chrome or Edge, or click the **KeyWest** icon if you’ve installed the extension. The button next to **GTA FM** switches between English and Russian and remembers your choice.
+Open the [online tester](https://gagarinbefree.github.io/KeyWest/) in Chrome or Edge, or click the **KeyWest** icon if you’ve installed the extension. The tester starts in English every time you open or reload it. Click **Русский** next to **GTA FM** to switch to Russian, or **English** to switch back.
 
 Click **Capture mouse**. Hold **W + D**, move the mouse, and press the **left mouse button**. The **Movement** dot moves diagonally, the **Look** dot follows your mouse, and **RT** lights up. Stop moving the mouse while holding the keys. The right stick returns to center while the left stick holds its diagonal. Press **Esc** to release the cursor.
 
@@ -73,8 +73,6 @@ pnpm build
 ```
 
 Load the `dist` folder as an unpacked extension. To run static analysis, use `pvs-js analyze . --output pvs-report.json`. GitHub Actions checks pull requests targeting `main` and pushes to `main`. A successful build on `main` publishes a versioned ZIP to GitHub Releases.
-
-The tester uses Russian for Russian time zones and English elsewhere. For UTC or a fixed offset, it falls back to the region in the browser’s primary locale.
 
 </details>
 

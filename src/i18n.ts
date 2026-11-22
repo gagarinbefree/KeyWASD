@@ -3,43 +3,16 @@ import ru from '../public/_locales/ru/messages.json' with { type: 'json' }
 
 const catalogs = { en, ru }
 type Language = keyof typeof catalogs
-const preferenceKey = 'keywest.tester.language'
 
-/** Uses the regional default until the user chooses a supported language. */
-export function preferredLanguage(browser: Pick<Window, 'localStorage'>, fallback: Language): Language {
-  try {
-    const saved = browser.localStorage.getItem(preferenceKey)
-    if (saved === 'ru' || saved === 'en') return saved
-  } catch {
-    // Browser privacy settings may block storage.
+/** Starts each tester page in English and switches its language on button clicks. */
+export function installLanguageSwitch(button: HTMLElement, onChange: (language: Language) => void) {
+  function select(language: Language) {
+    button.lang = language === 'en' ? 'ru' : 'en'
+    button.textContent = language === 'en' ? 'Русский' : 'English'
+    onChange(language)
   }
-  return fallback
-}
-
-/** Remembers the language across visits when the browser allows storage. */
-export function saveLanguage(browser: Pick<Window, 'localStorage'>, language: Language) {
-  try {
-    browser.localStorage.setItem(preferenceKey, language)
-  } catch {
-    // The selected language still applies to the current page.
-  }
-}
-
-// Regional identifiers assigned to RU in the IANA time zone database.
-const russianZones = new Set([
-  'Europe/Kaliningrad', 'Europe/Moscow', 'Europe/Kirov', 'Europe/Volgograd',
-  'Europe/Astrakhan', 'Europe/Saratov', 'Europe/Ulyanovsk', 'Europe/Samara',
-  'Asia/Yekaterinburg', 'Asia/Omsk', 'Asia/Novosibirsk', 'Asia/Barnaul', 'Asia/Tomsk',
-  'Asia/Novokuznetsk', 'Asia/Krasnoyarsk', 'Asia/Irkutsk', 'Asia/Chita', 'Asia/Yakutsk',
-  'Asia/Khandyga', 'Asia/Vladivostok', 'Asia/Ust-Nera', 'Asia/Magadan', 'Asia/Sakhalin',
-  'Asia/Srednekolymsk', 'Asia/Kamchatka', 'Asia/Anadyr', 'W-SU'
-])
-
-/** Selects the page language from local region signals without a network request. */
-export function pageLanguage(timeZone: string | undefined, locale: string) {
-  if (timeZone && russianZones.has(timeZone)) return 'ru'
-  if (timeZone?.includes('/') && !timeZone.startsWith('Etc/')) return 'en'
-  return new Intl.Locale(locale).region === 'RU' ? 'ru' : 'en'
+  select('en')
+  button.addEventListener('click', () => select(button.lang === 'ru' ? 'ru' : 'en'))
 }
 
 /** Localizes static page elements and returns the same catalog for runtime controls. */

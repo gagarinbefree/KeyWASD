@@ -1,6 +1,6 @@
 import { controllerName, installController } from './controller.ts'
 import { installRadio } from './radio.ts'
-import { localizePage, pageLanguage, preferredLanguage, saveLanguage } from './i18n.ts'
+import { installLanguageSwitch, localizePage } from './i18n.ts'
 
 /** Returns a required element of the packaged test page. */
 function element(id: string) {
@@ -9,19 +9,7 @@ function element(id: string) {
   return node
 }
 
-const regionalLanguage = pageLanguage(Intl.DateTimeFormat().resolvedOptions().timeZone, navigator.language)
-let language = preferredLanguage(window, regionalLanguage)
-const languageButton = element('language')
-function applyLanguage() {
-  languageButton.lang = language === 'ru' ? 'en' : 'ru'
-  languageButton.textContent = language === 'ru' ? 'English' : 'Русский'
-  return localizePage(document, language)
-}
-languageButton.addEventListener('click', () => {
-  language = language === 'ru' ? 'en' : 'ru'
-  strings = applyLanguage()
-  saveLanguage(window, language)
-})
+let strings: ReturnType<typeof localizePage>
 const captureButton = element('capture') as HTMLButtonElement
 const errorMessage = element('error')
 const soundButton = element('sound') as HTMLButtonElement
@@ -100,5 +88,5 @@ function render() {
   requestAnimationFrame(render)
 }
 
-let strings = applyLanguage()
+installLanguageSwitch(element('language'), language => { strings = localizePage(document, language) })
 render()
