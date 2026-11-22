@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { installSpotify } from '../src/spotify.ts'
-import { trackIds } from '../src/playlist.ts'
+import { trackDurations, trackIds } from '../src/playlist.ts'
 
 const origin = 'https://open.spotify.com'
 function setup(storage = new Map()) {
@@ -34,12 +34,42 @@ test('loads the playlist at startup and requests playback as soon as Spotify is 
   assert.equal(states.at(-1), 'playing')
 })
 
-function finishTrack(session, trackUrl = session.frame.src) {
+function finishTrack(session, trackUrl = session.frame.src, clipDuration) {
   const id = new URL(trackUrl).pathname.split('/').at(-1)
-  const update = { playingURI: 'spotify:track:' + id, isPaused: false, isBuffering: false, duration: 15478 }
+  const duration = clipDuration ?? trackDurations[id]
+  const update = { playingURI: 'spotify:track:' + id, isPaused: false, isBuffering: false, duration }
   session.message('playback_update', { ...update, position: 101 })
   session.message('playback_update', { ...update, position: update.duration })
 }
+
+test('ending a preview keeps the selected song and lets the listener retry it', () => {
+  const s = setup()
+  const first = s.frame.src
+  s.message('ready')
+  finishTrack(s, first, 30000)
+  assert.equal(s.frame.src, first)
+  assert.equal(s.states.at(-1), 'preview')
+  s.player.unlock()
+  assert.equal(s.states.at(-1), 'preview')
+  s.player.toggle()
+  assert.equal(s.states.at(-1), 'loading')
+  assert.equal(s.frame.src, first)
+})
+
+test('only the current song reaching its full duration advances the queue', () => {
+  const s = setup()
+  const first = s.frame.src
+  const id = new URL(first).pathname.split('/').at(-1)
+  const update = { playingURI: 'spotify:track:' + id, isPaused: false, isBuffering: false, duration: trackDurations[id] }
+  s.message('ready')
+  s.message('playback_update', { ...update, position: 10000 })
+  s.message('playback_update', { ...update, position: update.duration, isBuffering: true })
+  s.message('playback_update', { ...update, position: update.duration, playingURI: undefined })
+  s.message('playback_update', { ...update, position: update.duration - 1, isPaused: true })
+  assert.equal(s.frame.src, first)
+  s.message('playback_update', { ...update, position: update.duration, isPaused: true })
+  assert.notEqual(s.frame.src, first)
+})
 
 test('reloading with the same random draws still avoids the last selected song', t => {
   t.mock.method(Math, 'random', () => 0.25)

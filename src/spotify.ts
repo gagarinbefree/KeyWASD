@@ -1,6 +1,6 @@
-import { trackIds } from './playlist.ts'
+import { trackDurations, trackIds } from './playlist.ts'
 
-export type MusicState = 'loading' | 'starting' | 'playing' | 'off' | 'blocked' | 'error'
+export type MusicState = 'loading' | 'starting' | 'playing' | 'off' | 'blocked' | 'preview' | 'error'
 
 const origin = 'https://open.spotify.com'
 const lastTrackKey = 'keywest.gta-fm.last-track'
@@ -72,9 +72,14 @@ export function installSpotify(win: Window, frame: HTMLIFrameElement, render: (s
       show('error')
     } else if (data?.type === 'playback_update') {
       const update = data.payload
-      if (!ready || (update?.playingURI && update.playingURI !== 'spotify:track:' + trackId)) return
-      if (state !== 'off' && played && update?.duration > 0 && update.position >= update.duration) {
-        nextTrack()
+      const currentURI = 'spotify:track:' + trackId
+      if (!ready || state === 'preview' || (update?.playingURI && update.playingURI !== currentURI)) return
+      if (state !== 'off' && state !== 'error' && played && update?.playingURI === currentURI &&
+          update.isBuffering === false && Number.isFinite(update.position) && Number.isFinite(update.duration) &&
+          update.duration > 0 && update.position >= update.duration) {
+        // Compare catalog and stream lengths at second precision, after the stream has ended.
+        if (Math.floor(update.duration / 1000) >= Math.floor(trackDurations[trackId] / 1000)) nextTrack()
+        else show('preview')
       } else if (update?.isPaused === false) {
         if (state === 'off') send('pause')
         else if (update.isBuffering === false && state !== 'playing') {
@@ -93,7 +98,7 @@ export function installSpotify(win: Window, frame: HTMLIFrameElement, render: (s
       if (state === 'playing' || state === 'loading' || state === 'starting') {
         show('off')
         if (ready) send('pause')
-      } else if (!ready || state === 'error') load()
+      } else if (!ready || state === 'error' || state === 'preview') load()
       else play()
     },
     unlock() {

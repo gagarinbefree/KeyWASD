@@ -19,6 +19,7 @@ const messages: Record<MusicState, string> = {
   playing: 'GTA FM',
   off: 'Звук выключен',
   blocked: 'Нажмите для звука',
+  preview: 'GTA FM · доступен только фрагмент',
   error: 'GTA FM недоступно'
 }
 const player = installSpotify(window, element('spotify-player') as HTMLIFrameElement, state => {
