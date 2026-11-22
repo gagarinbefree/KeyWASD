@@ -25,6 +25,6 @@
   "shift": { "message": "Лев. Shift" },
   "ctrl": { "message": "Лев. Ctrl" },
   "footerHint": { "message": "переключить режим · При уходе с вкладки ввод сбрасывается." },
-  "playlist": { "message": "Открыть плейлист GTA FM" },
+  "radioStation": { "message": "Открыть станцию GTA Classics на laut.fm" },
   "radioSound": { "message": "Звук GTA FM" }
 }

@@ -40,10 +40,12 @@ body {
 .brand { gap: .55rem; font: italic 400 2.15rem/1 "Russo One", sans-serif; letter-spacing: -.07em; }
 .brand img { width: 2.7rem; height: 2.7rem; border-radius: .55rem; }
 .brand > span > span { color: var(--pink); }
-.radio-strip { gap: .85rem; }
+.radio-strip { border-radius: 99px; }
 .sound-button[aria-pressed="false"] .sound-bars { opacity: .45; }
-.sound-button { color: var(--cream); background: #302238; border: 1px solid #79516f; box-shadow: none; border-radius: 99px; padding-inline: 1rem; font-size: 1rem; height: max(44px, 2.7rem); }
-.sound-button:hover { background: #493149; }
+.radio-strip .btn { color: var(--cream); background: #302238; border: 1px solid #79516f; box-shadow: none; font-size: 1rem; height: max(44px, 2.7rem); }
+.radio-strip .btn:hover { background: #493149; }
+.sound-button { min-width: 44px; }
+.station-link { padding-inline: .7rem 1rem; }
 .sound-bars { display: inline-flex; height: 1.1rem; align-items: center; gap: .14rem; }
 .sound-bars i { width: .2rem; height: .35rem; border-radius: 2px; background: var(--pink); }
 .sound-bars i:nth-child(2) { height: .9rem; }

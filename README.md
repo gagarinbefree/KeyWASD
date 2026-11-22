@@ -21,7 +21,7 @@ Click the **KeyWest** extension icon, then **Capture mouse**. Hold **W + D**, mo
 
 ![KeyWest gamepad tester waiting for input, with Movement on the left, Look in the middle, and Xbox buttons and triggers on the right.](docs/images/gamepad-tester.jpg)
 
-The **GTA FM** button in the upper-right corner toggles the tester’s radio. It picks a random song from the GTA playlist and plays the next one when the current track or preview ends.
+Click **GTA FM** in the upper-right corner to open GTA Classics on laut.fm in a new tab. The equalizer button beside it turns the tester’s radio on or off. If your browser blocks autoplay, click the equalizer to join the live broadcast. [Listen to GTA Classics](https://laut.fm/gta-classics)
 
 ## From the Keys to Leonida · Start GTA VI
 

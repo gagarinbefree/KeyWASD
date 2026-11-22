@@ -12,11 +12,11 @@
     <main class="shell">
       <header class="masthead">
         <div class="brand" aria-label="KeyWest"><img src="/icons/keywest-48.png" width="40" height="40" alt=""><span>Key<span>West</span></span></div>
-        <div class="radio-strip">
-          <button type="button" id="sound" data-i18n-label="radioSound" aria-label="GTA FM sound" aria-pressed="true" class="btn btn-sm sound-button">
+        <div class="join radio-strip">
+          <button type="button" id="sound" data-i18n-label="radioSound" aria-label="GTA FM sound" aria-pressed="true" class="btn btn-sm join-item sound-button">
             <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <span>GTA FM</span>
           </button>
+          <a class="btn btn-sm join-item station-link" href="https://laut.fm/gta-classics" target="_blank" rel="noopener noreferrer" data-i18n-label="radioStation" aria-label="Open GTA Classics on laut.fm">GTA FM</a>
         </div>
       </header>
       <section class="poster" aria-labelledby="title">
@@ -52,10 +52,10 @@
       </div>
       <footer>
         <span><kbd class="kbd kbd-sm">F8</kbd> <span data-i18n="footerHint">toggle capture · Input resets when you leave this tab.</span></span>
-        <a href="https://open.spotify.com/playlist/37i9dQZF1DX6RSJAsEDz7H" rel="noopener noreferrer" target="_blank" data-i18n-label="playlist" aria-label="Open the GTA FM playlist">GTA FM ↗</a>
+        <a href="https://laut.fm/gta-classics" rel="noopener noreferrer" target="_blank" data-i18n-label="radioStation" aria-label="Open GTA Classics on laut.fm">GTA FM ↗</a>
       </footer>
     </main>
-    <iframe id="spotify-player" title="GTA FM" allow="autoplay; encrypted-media" hidden></iframe>
+    <audio id="radio-player" preload="none"></audio>
     <script type="module" src="/src/tester.ts"></script>
   </body>
 </html>

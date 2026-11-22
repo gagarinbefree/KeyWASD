@@ -25,6 +25,6 @@
   "shift": { "message": "Left Shift" },
   "ctrl": { "message": "Left Ctrl" },
   "footerHint": { "message": "toggle capture · Input resets when you leave this tab." },
-  "playlist": { "message": "Open the GTA FM playlist" },
+  "radioStation": { "message": "Open GTA Classics on laut.fm" },
   "radioSound": { "message": "GTA FM sound" }
 }

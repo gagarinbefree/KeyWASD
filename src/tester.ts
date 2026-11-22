@@ -1,5 +1,5 @@
 import { controllerName, installController } from './controller.ts'
-import { installSpotify } from './spotify.ts'
+import { installRadio } from './radio.ts'
 import { localizePage, pageLanguage } from './i18n.ts'
 
 /** Returns a required element of the packaged test page. */
@@ -14,14 +14,14 @@ const strings = localizePage(document, language)
 const captureButton = element('capture') as HTMLButtonElement
 const errorMessage = element('error')
 const soundButton = element('sound') as HTMLButtonElement
-const player = installSpotify(window, element('spotify-player') as HTMLIFrameElement, state => {
-  const enabled = state === 'playing' || state === 'starting' || state === 'loading'
+const player = installRadio(element('radio-player') as HTMLAudioElement, state => {
+  const enabled = state === 'playing' || state === 'starting'
   soundButton.dataset.state = state
   soundButton.setAttribute('aria-pressed', String(enabled))
 })
 soundButton.addEventListener('click', () => player.toggle())
 function unlockMusic(event: Event) {
-  if (event.target instanceof Node && !soundButton.contains(event.target)) player.unlock()
+  if (event.target instanceof Element && !event.target.closest('#sound, a')) player.unlock()
 }
 window.addEventListener('click', unlockMusic, true)
 window.addEventListener('keydown', unlockMusic, true)
