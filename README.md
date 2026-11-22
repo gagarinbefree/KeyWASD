@@ -1,4 +1,4 @@
-# <img src="./public/icons/keywest-48.png" width="40" height="40" align="absmiddle" alt=""> KeyWest · Keyboard and mouse for Xbox Remote Play
+# <img src="./public/icons/keywest-48.png" width="60" height="60" align="absmiddle" alt=""> KeyWest · Keyboard and mouse for Xbox Remote Play
 
 Got GTA VI on Xbox and a left hand that goes straight to WASD? **KeyWest** turns your keyboard and mouse into a virtual Xbox controller in Chrome or Edge. Hold **W + D** and sweep the mouse toward the ocean. The browser reads both sticks at once, so you can keep moving while you look around.
 
