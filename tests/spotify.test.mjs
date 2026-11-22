@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { installSpotify } from '../src/spotify.ts'
-import { trackDurations, trackIds } from '../src/playlist.ts'
+import { trackIds } from '../src/playlist.ts'
 
 const origin = 'https://open.spotify.com'
 function setup(storage = new Map()) {
@@ -34,33 +34,32 @@ test('loads the playlist at startup and requests playback as soon as Spotify is 
   assert.equal(states.at(-1), 'playing')
 })
 
-function finishTrack(session, trackUrl = session.frame.src, clipDuration) {
+function finishTrack(session, trackUrl = session.frame.src, duration = 185000) {
   const id = new URL(trackUrl).pathname.split('/').at(-1)
-  const duration = clipDuration ?? trackDurations[id]
   const update = { playingURI: 'spotify:track:' + id, isPaused: false, isBuffering: false, duration }
   session.message('playback_update', { ...update, position: 101 })
   session.message('playback_update', { ...update, position: update.duration })
 }
 
-test('ending a preview keeps the selected song and lets the listener retry it', () => {
+test('previews and full tracks automatically start the next song when each stream ends', () => {
   const s = setup()
-  const first = s.frame.src
   s.message('ready')
-  finishTrack(s, first, 30000)
-  assert.equal(s.frame.src, first)
-  assert.equal(s.states.at(-1), 'preview')
-  s.player.unlock()
-  assert.equal(s.states.at(-1), 'preview')
-  s.player.toggle()
-  assert.equal(s.states.at(-1), 'loading')
-  assert.equal(s.frame.src, first)
+  for (const duration of [30000, 27553, 210000]) {
+    const previous = s.frame.src
+    finishTrack(s, previous, duration)
+    assert.notEqual(s.frame.src, previous)
+    assert.equal(s.states.at(-1), 'loading')
+    s.message('ready')
+    assert.equal(s.commands.at(-1), 'play')
+    assert.equal(s.states.at(-1), 'starting')
+  }
 })
 
 test('only the current song reaching its full duration advances the queue', () => {
   const s = setup()
   const first = s.frame.src
   const id = new URL(first).pathname.split('/').at(-1)
-  const update = { playingURI: 'spotify:track:' + id, isPaused: false, isBuffering: false, duration: trackDurations[id] }
+  const update = { playingURI: 'spotify:track:' + id, isPaused: false, isBuffering: false, duration: 193053 }
   s.message('ready')
   s.message('playback_update', { ...update, position: 10000 })
   s.message('playback_update', { ...update, position: update.duration, isBuffering: true })
