@@ -1,4 +1,4 @@
-name: Test, build and release KeyWest
+name: Test, build and release KeyWASD
 
 on:
   pull_request:
@@ -49,7 +49,7 @@ jobs:
         id: package
         uses: actions/upload-artifact@v7
         with:
-          name: KeyWest-${{ steps.manifest.outputs.version }}
+          name: KeyWASD-${{ steps.manifest.outputs.version }}
           path: dist/
           if-no-files-found: error
           overwrite: true
@@ -99,7 +99,7 @@ jobs:
     steps:
       - name: Verify ZIP and publish release
         run: |
-          archive="KeyWest-$VERSION.zip"
+          archive="KeyWASD-$VERSION.zip"
           tag="v$VERSION"
           gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" > "$archive"
           unzip -tq "$archive"
@@ -109,4 +109,4 @@ jobs:
             exit 0
           fi
           gh release create "$tag" "$archive" --repo "$GITHUB_REPOSITORY" \
-            --target "$GITHUB_SHA" --title "KeyWest $VERSION" --generate-notes
+            --target "$GITHUB_SHA" --title "KeyWASD $VERSION" --generate-notes

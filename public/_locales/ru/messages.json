@@ -1,7 +1,7 @@
 {
   "extensionDescription": { "message": "Управление с клавиатуры и мыши и локальная проверка виртуального геймпада." },
-  "actionTitle": { "message": "Открыть стенд KeyWest" },
-  "pageTitle": { "message": "Проверка клавиатуры и мыши для Xbox Remote Play | KeyWest" },
+  "actionTitle": { "message": "Открыть стенд KeyWASD" },
+  "pageTitle": { "message": "Проверка клавиатуры и мыши для Xbox Remote Play | KeyWASD" },
   "headingFirst": { "message": "Проверка" },
   "headingSecond": { "message": "геймпада" },
   "instructions": { "message": "Зажмите W + D, двигайте мышью и нажмите ЛКМ." },
@@ -25,7 +25,7 @@
   "shift": { "message": "Лев. Shift" },
   "ctrl": { "message": "Лев. Ctrl" },
   "footerHint": { "message": "переключить режим · При уходе с вкладки ввод сбрасывается." },
-  "githubRepository": { "message": "Открыть KeyWest на GitHub" },
+  "githubRepository": { "message": "Открыть KeyWASD на GitHub" },
   "radioStation": { "message": "Открыть станцию GTA Classics на laut.fm" },
   "radioSound": { "message": "Звук GTA FM" }
 }

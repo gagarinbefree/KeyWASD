@@ -36,6 +36,7 @@ test('the page polls one player in the physical slot and receives independent in
   fire(win, 'mousedown', { button: 0 })
   fire(win, 'mousemove', { movementX: 8, movementY: -4 })
   const [pad] = devices.getGamepads()
+  assert.equal(pad.id, 'KeyWASD Virtual Xbox Controller')
   assert.equal(pad.mapping, 'standard')
   assert.equal(pad.axes[1], -1)
   assert.ok(pad.axes[2] > 0 && pad.buttons[7].pressed)

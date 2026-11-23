@@ -1,7 +1,7 @@
 {
   "extensionDescription": { "message": "Map your keyboard and mouse to a virtual gamepad and test the controls locally." },
-  "actionTitle": { "message": "Open the KeyWest gamepad tester" },
-  "pageTitle": { "message": "Xbox Remote Play Keyboard and Mouse Tester | KeyWest" },
+  "actionTitle": { "message": "Open the KeyWASD gamepad tester" },
+  "pageTitle": { "message": "Xbox Remote Play Keyboard and Mouse Tester | KeyWASD" },
   "headingFirst": { "message": "Gamepad" },
   "headingSecond": { "message": "tester" },
   "instructions": { "message": "Hold W + D, move the mouse and click the left mouse button." },
@@ -25,7 +25,7 @@
   "shift": { "message": "Left Shift" },
   "ctrl": { "message": "Left Ctrl" },
   "footerHint": { "message": "toggle capture · Input resets when you leave this tab." },
-  "githubRepository": { "message": "Open KeyWest on GitHub" },
+  "githubRepository": { "message": "Open KeyWASD on GitHub" },
   "radioStation": { "message": "Open GTA Classics on laut.fm" },
   "radioSound": { "message": "GTA FM sound" }
 }

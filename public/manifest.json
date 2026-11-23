@@ -1,18 +1,18 @@
 {
   "manifest_version": 3,
-  "name": "KeyWest",
+  "name": "KeyWASD",
   "default_locale": "en",
   "description": "__MSG_extensionDescription__",
   "version": "0.1.0",
   "icons": {
-    "16": "icons/keywest-16.png",
-    "32": "icons/keywest-32.png",
-    "48": "icons/keywest-48.png",
-    "128": "icons/keywest-128.png"
+    "16": "icons/keywasd-16.png",
+    "32": "icons/keywasd-32.png",
+    "48": "icons/keywasd-48.png",
+    "128": "icons/keywasd-128.png"
   },
   "action": {
     "default_title": "__MSG_actionTitle__",
-    "default_icon": { "16": "icons/keywest-16.png", "32": "icons/keywest-32.png", "48": "icons/keywest-48.png" }
+    "default_icon": { "16": "icons/keywasd-16.png", "32": "icons/keywasd-32.png", "48": "icons/keywasd-48.png" }
   },
   "background": { "service_worker": "open-tester.js" },
   "options_page": "index.html",

@@ -1,6 +1,6 @@
 import { ControllerInput } from './input.ts'
 
-export const controllerName = 'KeyWest Virtual Xbox Controller'
+export const controllerName = 'KeyWASD Virtual Xbox Controller'
 
 /** Installs page-local polling and returns a command for a user-initiated mouse capture. */
 export function installController(win: Window, doc: Document, devices: Navigator) {
@@ -90,7 +90,7 @@ export function installController(win: Window, doc: Document, devices: Navigator
       consume(event)
       if (!down || event.repeat) return
       if (target) stop()
-      else void capture(doc.documentElement).catch(error => console.warn('KeyWest', error))
+      else void capture(doc.documentElement).catch(error => console.warn('KeyWASD', error))
     } else if (slot >= 0 && input.key(event.code, down)) consume(event)
   }
 
