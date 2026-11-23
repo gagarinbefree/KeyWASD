@@ -1,4 +1,4 @@
-# <img src="./public/icons/keywasd-48.png" width="60" height="60" align="absmiddle" alt=""> <img src="./docs/images/keywasd-wordmark.png" width="140" height="40" align="absmiddle" alt="KeyWASD"> · *Keyboard and mouse for Xbox Remote*
+# <img src="./public/icons/keywasd-48.png" width="60" height="60" align="absmiddle" alt=""> <img src="./docs/images/keywasd-wordmark.png" width="140" height="40" align="absmiddle" alt="KeyWASD"> · *<img src="./docs/images/keywasd-tagline.png" width="475" align="absmiddle" alt="Keyboard and mouse for Xbox Remote">*
 
 Got GTA VI on Xbox and a left hand that goes straight to WASD? **KeyWASD** turns your keyboard and mouse into a virtual Xbox controller in Chrome or Edge. Hold **W + D** and sweep the mouse toward the ocean. The browser reads both sticks at once, so you can keep moving while you look around.
 
