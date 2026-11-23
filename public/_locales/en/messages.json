@@ -1,11 +1,11 @@
 {
   "extensionDescription": { "message": "Map your keyboard and mouse to a virtual gamepad and test the controls locally." },
   "actionTitle": { "message": "Open the KeyWASD gamepad tester" },
-  "pageTitle": { "message": "Xbox Remote Play Keyboard and Mouse Tester | KeyWASD" },
+  "pageTitle": { "message": "GTA VI Keyboard and Mouse Tester for Xbox Remote Play | KeyWASD" },
   "headingFirst": { "message": "Gamepad" },
   "headingSecond": { "message": "tester" },
   "instructions": { "message": "Hold W + D, move the mouse and click the left mouse button." },
-  "watchSticks": { "message": "Check both sticks and the right trigger before starting Xbox Remote Play." },
+  "watchSticks": { "message": "Check both sticks and the right trigger before trying GTA VI on Xbox Remote Play." },
   "waiting": { "message": "Waiting for input" },
   "capture": { "message": "Capture mouse" },
   "active": { "message": "Capture enabled" },

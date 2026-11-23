@@ -1,11 +1,11 @@
 {
   "extensionDescription": { "message": "Управление с клавиатуры и мыши и локальная проверка виртуального геймпада." },
   "actionTitle": { "message": "Открыть стенд KeyWASD" },
-  "pageTitle": { "message": "Проверка клавиатуры и мыши для Xbox Remote Play | KeyWASD" },
+  "pageTitle": { "message": "Клавиатура и мышь для GTA VI через Xbox Remote Play | KeyWASD" },
   "headingFirst": { "message": "Проверка" },
   "headingSecond": { "message": "геймпада" },
   "instructions": { "message": "Зажмите W + D, двигайте мышью и нажмите ЛКМ." },
-  "watchSticks": { "message": "Проверьте оба стика и правый курок перед запуском Xbox Remote Play." },
+  "watchSticks": { "message": "Проверьте оба стика и правый курок перед запуском GTA VI через Xbox Remote Play." },
   "waiting": { "message": "Ожидание ввода" },
   "capture": { "message": "Включить захват" },
   "active": { "message": "Захват включён" },
